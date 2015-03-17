@@ -46,6 +46,11 @@ Utils =
     for part, i in optional_parts when (not options.hasOwnProperty(part) and defaults.default_url_options.hasOwnProperty(part))
       options[part] = defaults.default_url_options[part]
 
+    if @get_object_type(defaults.default_url_options.params) == 'object'
+      for part, i in Object.keys(defaults.default_url_options.params) when (not options.hasOwnProperty(part))
+        options[part] = defaults.default_url_options.params[part]
+
+
   extract_anchor: (options) ->
     anchor = ""
     if options.hasOwnProperty("anchor")
